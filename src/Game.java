@@ -34,23 +34,28 @@ public class Game
      */
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office;
+        Room entrance, danceFloor, bar, bathroomWay, smokingArea, boyBathroom, girlBathroom;
       
         // create the rooms
-        outside = new Room("outside the main entrance of the university");
-        theater = new Room("in a lecture theater");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+        entrance = new Room("You are outside of the club. Go inside and get that girl!!");
+        danceFloor = new Room("You are on the dance floor. Shake that ass.");
+        bar = new Room("You are in the bar. You can get some drinks.");
+        bathroomWay = new Room("You are in the bathroom way. It smells of pee.");
+        smokingArea = new Room("You are in the smoking area. Time to talk with some people.");
+        boyBathroom = new Room("I'm in the bathroom, is it the boys or the girls?");
+        girlBathroom = new Room("I'm in the bathroom, is it the boys or the girls?");
         
         // initialise room exits
-        outside.setExits(null, theater, lab, pub);
-        theater.setExits(null, null, null, outside);
-        pub.setExits(null, outside, null, null);
-        lab.setExits(outside, office, null, null);
-        office.setExits(null, null, null, lab);
+        entrance.setExits(null, smokingArea, null, danceFloor);
+        danceFloor.setExits(null, entrance, bathroomWay, bar);
+        bar.setExits(null, danceFloor, null, null);
+        bathroomWay.setExits(danceFloor, girlBathroom, null, boyBathroom);
+        smokingArea.setExits(null, null, null, entrance);
+        boyBathroom.setExits(null, bathroomWay, null, null);
+        girlBathroom.setExits(null,null,null,bathroomWay);
+        
 
-        currentRoom = outside;  // start game outside
+        currentRoom = entrance;  // start game entrance
     }
 
     /**
