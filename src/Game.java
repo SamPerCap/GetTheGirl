@@ -82,8 +82,8 @@ public class Game
     private void printWelcome()
     {
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
+        System.out.println("Welcome to GetTheGirl!");
+        System.out.println("The aim of the game is to get the most beautiful girl in the club and take her home");
         System.out.println("Type 'help' if you need help.");
         System.out.println();
         System.out.println("You are " + currentRoom.getDescription());
@@ -124,10 +124,13 @@ public class Game
         else if (commandWord.equals("go")) {
             goRoom(command);
         }
+        else if(commandWord.equals("act")){
+            actHere(command);
+        }
         else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
         }
-
+        
         return wantToQuit;
     }
 
@@ -140,25 +143,39 @@ public class Game
      */
     private void printHelp() 
     {
-        System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
-        System.out.println();
+        System.out.println("You wander around at the club");
         System.out.println("Your command words are:");
-        System.out.println("   go quit help");
+        System.out.println("   go quit help act");
     }
 
     /** 
      * Try to go in one direction. If there is an exit, enter
      * the new room, otherwise print an error message.
      */
+    
+    private void actHere(Command command){
+    
+        if(!command.hasSecondWord()){
+        
+            System.out.println("Act with what or who?");
+            //return;
+        }
+        // Prueba n1 del act en 'x' room
+        /*Room actualRoom = null;
+        if(actualRoom.equals(entrance)){
+        
+        }*/
+        
+    }
     private void goRoom(Command command) 
     {
         if(!command.hasSecondWord()) {
             // if there is no second word, we don't know where to go...
             System.out.println("Go where?");
-            return;
+           
+            //return;
         }
-
+        
         String direction = command.getSecondWord();
 
         // Try to leave current room.
@@ -198,6 +215,7 @@ public class Game
             System.out.println();
         }
     }
+    
 
     /** 
      * "Quit" was entered. Check the rest of the command to see

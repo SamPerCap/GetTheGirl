@@ -53,7 +53,9 @@ public class Command
     {
         return secondWord;
     }
-
+    public String getFirstWord(){
+        return commandWord;
+    }
     /**
      * @return true if this command was not understood.
      */
@@ -66,7 +68,7 @@ public class Command
      * @return true if the command has a second word.
      */
     public boolean hasSecondWord()
-    {
+    {  
         return (secondWord != null);
     }
 }
