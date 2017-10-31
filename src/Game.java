@@ -158,7 +158,7 @@ public class Game
         if(!command.hasSecondWord()){
         
             System.out.println("Act with what or who?");
-            //return;
+            return;
         }
         // Prueba n1 del act en 'x' room
         /*Room actualRoom = null;
@@ -173,7 +173,7 @@ public class Game
             // if there is no second word, we don't know where to go...
             System.out.println("Go where?");
            
-            //return;
+            return;
         }
         
         String direction = command.getSecondWord();
