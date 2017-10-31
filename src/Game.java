@@ -32,18 +32,18 @@ public class Game
     /**
      * Create all the rooms and link their exits together.
      */
-    private void createRooms()
+    public void createRooms()
     {
         Room entrance, danceFloor, bar, bathroomWay, smokingArea, boyBathroom, girlBathroom;
       
         // create the rooms
-        entrance = new Room("You are outside of the club. Go inside and get that girl!!");
-        danceFloor = new Room("You are on the dance floor. Shake that ass.");
-        bar = new Room("You are in the bar. You can get some drinks.");
-        bathroomWay = new Room("You are in the bathroom way. It smells of pee.");
-        smokingArea = new Room("You are in the smoking area. Time to talk with some people.");
-        boyBathroom = new Room("I'm in the bathroom, is it the boys or the girls?");
-        girlBathroom = new Room("I'm in the bathroom, is it the boys or the girls?");
+        entrance = new Room("outside of the club. Go inside and get that girl!!");
+        danceFloor = new Room("on the dance floor. Shake that ass.");
+        bar = new Room("in the bar. You can get some drinks.");
+        bathroomWay = new Room("in the bathroom way. It smells of pee.");
+        smokingArea = new Room("in the smoking area. Time to talk with some people.");
+        boyBathroom = new Room("in the bathroom, is it the boys or the girls?");
+        girlBathroom = new Room("in the bathroom, is it the boys or the girls?");
         
         // initialise room exits
         entrance.setExits(null, smokingArea, null, danceFloor);
@@ -79,6 +79,24 @@ public class Game
     /**
      * Print out the opening message for the player.
      */
+    private void printLocationInfo()
+    {
+        System.out.println("You are " + currentRoom.getDescription());
+        System.out.print("Exits: ");
+        if(currentRoom.northExit != null) {
+        System.out.print("north ");
+        }
+        if(currentRoom.eastExit != null) {
+        System.out.print("east ");
+        }
+        if(currentRoom.southExit != null) {
+        System.out.print("south ");
+        }
+        if(currentRoom.westExit != null) {
+        System.out.print("west ");
+        }
+        System.out.println();
+    }
     private void printWelcome()
     {
         System.out.println();
@@ -86,23 +104,8 @@ public class Game
         System.out.println("The aim of the game is to get the most beautiful girl in the club and take her home");
         System.out.println("Type 'help' if you need help.");
         System.out.println();
-        System.out.println("You are " + currentRoom.getDescription());
-        System.out.print("Exits: ");
-        if(currentRoom.northExit != null) {
-            System.out.print("north ");
-        }
-        if(currentRoom.eastExit != null) {
-            System.out.print("east ");
-        }
-        if(currentRoom.southExit != null) {
-            System.out.print("south ");
-        }
-        if(currentRoom.westExit != null) {
-            System.out.print("west ");
-        }
-        System.out.println();
-    }
-
+        printLocationInfo();}
+        
     /**
      * Given a command, process (that is: execute) the command.
      * @param command The command to be processed.
@@ -160,13 +163,18 @@ public class Game
             System.out.println("Act with what or who?");
             return;
         }
-        // Prueba n1 del act en 'x' room
-        /*Room actualRoom = null;
-        if(actualRoom.equals(entrance)){
+        String interact = command.getSecondWord();
         
+        
+        //Prueba n1 del act en 'x' room
+       
+        /*if(currentRoom.equals(bar) && interact.equals("drink")){
+            System.out.println("You have bought a drink");
         }*/
         
     }
+    
+    
     private void goRoom(Command command) 
     {
         if(!command.hasSecondWord()) {
@@ -198,25 +206,10 @@ public class Game
         }
         else {
             currentRoom = nextRoom;
-            System.out.println("You are " + currentRoom.getDescription());
-            System.out.print("Exits: ");
-            if(currentRoom.northExit != null) {
-                System.out.print("north ");
-            }
-            if(currentRoom.eastExit != null) {
-                System.out.print("east ");
-            }
-            if(currentRoom.southExit != null) {
-                System.out.print("south ");
-            }
-            if(currentRoom.westExit != null) {
-                System.out.print("west ");
+            printLocationInfo();
             }
             System.out.println();
         }
-    }
-    
-
     /** 
      * "Quit" was entered. Check the rest of the command to see
      * whether we really quit the game.
