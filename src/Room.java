@@ -12,13 +12,14 @@
  * @author  Michael Kölling and David J. Barnes
  * @version 2011.07.31
  */
+
+import java.util.HashMap;
+
 public class Room 
 {
     private String description;
-    private Room northExit;
-    private Room southExit;
-    private Room eastExit;
-    private Room westExit;
+    private HashMap <String, Room> exits;
+    
 
     /**
      * Create a room described "description". Initially, it has
@@ -29,24 +30,8 @@ public class Room
     public Room(String description) 
     {
         this.description = description;
+        exits = new HashMap<String, Room>();
     }
-    public Room getExit(String direction){
-        if(direction.equals("north")) {
-        return northExit;
-        }
-        if(direction.equals("east")) {
-        return eastExit;
-        }
-        if(direction.equals("south")) {
-        return southExit;
-        }
-        if(direction.equals("west")) {
-        return westExit;
-        }
-        return null;
-        }
-    
-    
     /**
      * Define the exits of this room.  Every direction either leads
      * to another room or is null (no exit there).
@@ -55,18 +40,13 @@ public class Room
      * @param south The south exit.
      * @param west The west exit.
      */
-    public void setExits(Room north, Room east, Room south, Room west) 
+    public void setExits(String direction, Room neighbour) 
     {
-        if(north != null)
-            northExit = north;
-        if(east != null)
-            eastExit = east;
-        if(south != null)
-            southExit = south;
-        if(west != null)
-            westExit = west;
+        exits.put(direction, neighbour);
     }
-
+    public Room getExit(String direction){
+            return exits.get(direction);
+    }
     /**
      * @return The description of the room.
      */

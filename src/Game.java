@@ -1,4 +1,4 @@
-/**
+    /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
  *  can walk around some scenery. That's all. It should really be extended 
@@ -46,13 +46,18 @@ public class Game
         girlBathroom = new Room("in the bathroom, is it the boys or the girls?");
         
         // initialise room exits
-        entrance.setExits(null, smokingArea, null, danceFloor);
-        danceFloor.setExits(null, entrance, bathroomWay, bar);
-        bar.setExits(null, danceFloor, null, null);
-        bathroomWay.setExits(danceFloor, girlBathroom, null, boyBathroom);
-        smokingArea.setExits(null, null, null, entrance);
-        boyBathroom.setExits(null, bathroomWay, null, null);
-        girlBathroom.setExits(null,null,null,bathroomWay);
+        entrance.setExits("east", smokingArea);
+        entrance.setExits("west", danceFloor);
+        smokingArea.setExits("west",entrance);
+        danceFloor.setExits("south",bathroomWay);
+        danceFloor.setExits("west",bar);
+        danceFloor.setExits("east",entrance);
+        bar.setExits("east",danceFloor);
+        bathroomWay.setExits("north",danceFloor);
+        bathroomWay.setExits("west",boyBathroom);
+        bathroomWay.setExits("east",girlBathroom);
+        boyBathroom.setExits("east", bathroomWay);
+        girlBathroom.setExits("west", bathroomWay);
         
 
         currentRoom = entrance;  // start game entrance
