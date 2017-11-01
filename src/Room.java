@@ -14,13 +14,31 @@
  */
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class Room 
 {
     private String description;
     private HashMap <String, Room> exits;
     
-
+    /**
+ * Return a long description of this room, of the form:
+ * You are in the kitchen.
+ * Exits: north west
+ * @return A description of the room, including exits.
+ */
+    public String getLongDescription()
+    {
+     return "You are " + description + ".\n" + getExitString();
+    }
+    public String getExitString(){
+        String returnString = "Exits:";
+        Set<String> keys = exits.keySet();
+    for(String exit : keys) {
+        returnString += " " + exit;
+    }
+    return returnString;
+    }
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or

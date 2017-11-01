@@ -1,3 +1,6 @@
+
+import java.util.Set;
+
     /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -14,6 +17,7 @@
  * @author  Michael Kölling and David J. Barnes
  * @version 2011.07.31
  */
+
 
 public class Game 
 {
@@ -86,21 +90,7 @@ public class Game
      */
     private void printLocationInfo()
     {
-        System.out.println("You are " + currentRoom.getDescription());
-        System.out.print("Exits: ");
-        if(currentRoom.getExit("north") != null) {
-        System.out.print("north ");
-        }
-        if(currentRoom.getExit("east") != null) {
-        System.out.print("east ");
-        }
-        if(currentRoom.getExit("south") != null) {
-        System.out.print("south ");
-        }
-        if(currentRoom.getExit("west") != null) {
-        System.out.print("west ");
-        }
-        System.out.println();
+        System.out.println(currentRoom.getLongDescription());
     }
     private void printWelcome()
     {
@@ -169,14 +159,7 @@ public class Game
             return;
         }
         String interact = command.getSecondWord();
-        
-        
-        //Prueba n1 del act en 'x' room
-       
-        /*if(currentRoom.equals(bar) && interact.equals("drink")){
-            System.out.println("You have bought a drink");
-        }*/
-        
+              
     }
     
     
@@ -230,4 +213,10 @@ public class Game
             return true;  // signal that we want to quit
         }
     }
+    /**
+ * Return a description of the room’s exits,
+ * for example, "Exits: north west".
+ * @return A description of the available exits.
+ */
+    
 }
